@@ -1,0 +1,90 @@
+; ; ; Örnek sınav sorusu 
+Bir firmada bir kişinin maaşını hesaplamak için aşağıda belirtilen kriterler kullanılmaktadır .
+
+1- Kişinin adını ve soyadını alınız .
+2- Kişinin görevini alınız , Müdür(M) , sekreter(S), işçi(İ)
+3- Müdür ham maaşı 15.000 işçi=9000 , sekreter=8000,
+4- Çalışan çocuk sayısını alın, her bir çocuk için 50 tl yardım yapınız
+5- Mesai saatini alın, o ayda ekstra çalıştığı mesai saati , 1 saatlik= 50 tl . 
+6- Hediye promosyon , her bir çalışan çalıştığı ayada 100-300 arasında rastgle ikramiye alır. 
+7- Eğer mesai saati aylık 30 saatin üzerinde ise maaşının ise 
+   maaşının %5i kadar ekstra prim ikramiyesi alır 
+8- Bu verilerle brüt maaşı hesaplayacağız .
+9- brüt maaşı üzerinden %0.5 damga vergisi kesilecek , 
+   20.000-25.000 arası ise %20 gelir vergisi kes ,25.000 üzeri ise %25 gelir vergisi kesilecek .
+10- Net maaşı hesapla .
+
+Maaş detaylarını ekrana yazdır .
+
+
+
+************************************  CEVAP *******************************************
+      
+import random
+
+ad=str(input("Adınızı giriniz="))
+soyad=str(input("Soyadınızı giriniz="))
+gorev=str(input("Görevinizi giriniz, M,İ,S ="))
+cocuk=int(input("GCocuk sayısını giriniz ="))
+mesai=int(input("mesai sayısını giriniz ="))
+prom=random.randrange(100,300)
+hammaas=0
+brutmaas=0
+netmaas=0
+gyazi=""
+mesaikazanc=0
+cocukkazanc=0
+if gorev=="M":
+    hammaas=15000
+    gyazi="Firma Müdürü"
+elif gorev=="İ":
+    hammaas=9000
+    gyazi="Firma İşçisi"
+elif gorev=="S":
+    hammaas=8000;
+    gyazi="Sekreter"
+brutmaas=hammaas+(cocuk*50)+prom
+
+if mesai>30:
+    brutmaas=brutmaas+(mesai*60)+(hammaas*0.05)
+    mesaikazanc=(mesai*10)+(hammaas*0.05)
+else:
+    brutmaas=brutmaas+(mesai*60)
+    mesaikazanc=mesai*10
+damgavergisi=brutmaas*0.005
+brutmaas=brutmaas-(brutmaas*0.005)
+gelirvergioran=0;
+cocukkazanc=cocuk*50
+if brutmaas>10000 and brutmaas<=20000:
+    netmaas=brutmaas-(brutmaas*0.15)
+    gelirvergioran=15
+elif brutmaas>20000 and brutmaas<=25000:
+    netmaas=brutmaas-(brutmaas*0.20)
+    gelirvergioran=20
+elif brutmaas>25000:
+    netmaas=brutmaas-(brutmaas*0.25)
+    gelirvergioran=25
+
+print("Sayın =",ad," ",soyad)
+print("Göreviniz=",gyazi)
+print("Çocuk Sayınız",cocuk)
+print("Bu aylık mesainiz=",mesai)
+print("Promosyonunuz",prom)
+print("Hammaşınız=",hammaas)
+print("Mesaiden kazancınız=",mesaikazanc)
+print("Çocuk Yardımı",cocukkazanc)
+print("Damga Vergisi=",damgavergisi)
+print("Gelir verigisi öncesi brüt maaş",brutmaas)
+print("Gelir Verigsi oranınız",gelirvergioran)
+print("NET maaşınız",netmaas)
+    
+    
+
+
+
+
+
+
+
+
+
